@@ -24,6 +24,10 @@
 <script>
 import courseData from '@/data/courseData'
 import {
+  throttle
+} from '@/libs/utils'
+
+import {
   reactive,
   toRefs,
 } from 'vue';
@@ -35,15 +39,14 @@ export default {
       searchResult: [],
     })
 
-    const searchAction = (e) => {
+    const searchAction = throttle((e) => {
       const inputVal = e.target.value;
       state.searchResult = courseData.filter(item => item.courseName.includes(inputVal))
       console.log('searchResult', state.searchResult)
-    }
+    }, 500)
     return {
       ...toRefs(state),
       courseData,
-
       searchAction,
     }
   },

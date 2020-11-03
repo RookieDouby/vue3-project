@@ -1,26 +1,24 @@
 function throttle(fn, delay) {
-  var t = null,
+  var timer = null,
       begin = new Date().getTime();
 
   return function() {
-    var _self = this,
-        args = arguments,
-        cur = new Date().getTime();
-    
-    clearTimeout(t);
+    var curTime = new Date().getTime(),
+        _self = this,
+        args = arguments;
 
-    if (cur - begin >= delay) {
+    clearTimeout(timer);
+    if (curTime - begin >= delay) {
       fn.apply(_self, args)
-      begin = cur;
+      begin = curTime;
     } else {
-      t = setTimeout(() => {
+      timer = setTimeout(() => {
         fn.apply(_self, args)
-      }, delay)
+      }, delay);
     }
   }
 }
- 
-export  {
-  throttle
-}
 
+export {
+  throttle,
+}
