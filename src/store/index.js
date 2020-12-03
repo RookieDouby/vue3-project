@@ -1,16 +1,11 @@
 import { createStore } from 'vuex'
+import state from './state'
+import mutations from './mutations'
+
 
 export default createStore({
   state: {
-    curIndex: 0,
   },
   mutations: {
-    changeCityInfo(state, index) {
-      state.curIndex = index;
-    },
   },
-  actions: {
-  },
-  modules: {
-  }
 })
